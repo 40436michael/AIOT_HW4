@@ -3,7 +3,17 @@
 本專案為「物聯網數據分析與應用 — Deep Learning AIGC（HW4）」之實作成果，參考 **Taica AIGC** 課程內容，延伸課堂中 Stable Diffusion 的示範，實作一個文字生成圖像（Text-to-Image）的生成式人工智慧應用，並以 **Streamlit** 建立 Web 操作介面。
 
 ---
+## 本地成果
+<img width="1897" height="951" alt="image" src="https://github.com/user-attachments/assets/686ec071-a8b3-4d57-8c86-80c257f52503" />
+<img width="512" height="512" alt="00000-2084475014" src="https://github.com/user-attachments/assets/d63bbae9-b406-426c-bdfa-8fcf318a2210" />
+---
+---
+## Streamlist APP
+<img width="591" height="612" alt="image" src="https://github.com/user-attachments/assets/ea4e6c64-9832-44ad-918e-f95fc790db5f" />
 
+<img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/95d151cd-5206-4be0-b1da-8f53e2c8dbc2" />
+
+---
 ## 專案說明
 
 本系統使用深度學習中的 **擴散模型（Diffusion Model）**，透過 **Stable Diffusion** 將使用者輸入的文字描述（Prompt）轉換為對應的圖像內容，展示生成式 AI 在圖像生成上的實際應用。
@@ -111,4 +121,5 @@ torch.set_num_threads(2)
 感謝所有提供 **LoRA 權重** 與 **Diffusers 教學** 的開源社群，讓 AI 生成藝術更容易上手！
 
 ```
+
 
