@@ -29,9 +29,9 @@ def load_pipeline():
     )
     pipe = pipe.to("cpu")
     
-    # 載入 LoRA（確保 lora/lineart_manga.safetensors 放在 repo 中）
+    # 載入 LoRA
     pipe.load_lora_weights(
-    "Sasulee/animeLineartMangaLike_v30MangaLike", 
+    "lora/animeLineartMangaLike_v30MangaLike.safetensors", 
     weight=1.0
 )
     
@@ -85,6 +85,7 @@ with col2:
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
 
 
 
