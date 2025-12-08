@@ -1,8 +1,10 @@
 streamlit
-torch==2.1.0+cpu --index-url https://download.pytorch.org/whl/cpu
-torchvision==0.16.0+cpu --index-url https://download.pytorch.org/whl/cpu
-diffusers==0.23.1
-transformers==4.34.0
+torch
+torchvision
+torchaudio
+diffusers
+transformers
 accelerate
 safetensors
 Pillow
+
