@@ -34,7 +34,9 @@ def load_pipeline():
     "lora/animeLineartMangaLike_v30MangaLike.safetensors", 
     weight=1.0
 )
-    
+    for name, param in pipe.unet.named_parameters():
+    if "lora" in name:
+        print(name, param.shape)
     return pipe
 
 pipe = load_pipeline()
@@ -85,6 +87,7 @@ with col2:
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
 
 
 
