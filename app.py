@@ -46,8 +46,15 @@ col1, col2 = st.columns([1, 2])
 
 with col1:
     st.subheader("生成參數設定")
-    prompt = st.text_area("Prompt", "cute anime girl, long hair, detailed")
-    negative_prompt = st.text_area("Negative Prompt", "blurry, low quality, bad anatomy")
+    prompt = st.text_area(
+        "Prompt",
+        "masterpiece, best quality, 1girl, solo, long_hair, looking_at_viewer, smile, bangs, skirt, shirt, long_sleeves, hat, dress, bow, holding, closed_mouth, flower, frills, hair_flower, petals, bouquet, holding_flower, center_frills, bonnet, holding_bouquet, flower field, lineart, monochrome, <lora:animeoutlineV4_16:1>"
+    )
+
+    negative_prompt = st.text_area(
+        "Negative Prompt",
+        "EasyNegative, badhandv4"
+    )
     steps = st.slider("Sampling Steps", 10, 50, 25)
     cfg = st.slider("CFG Scale", 1.0, 15.0, 7.5)
     seed = st.number_input("Seed (-1 為隨機)", min_value=-1, value=-1)
@@ -85,6 +92,7 @@ with col2:
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
 
 
 
