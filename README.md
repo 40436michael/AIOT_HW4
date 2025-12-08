@@ -131,11 +131,3 @@ torch.set_num_threads(2)
 
 感謝所有提供 **LoRA 權重** 與 **Diffusers 教學** 的開源社群，讓 AI 生成藝術更容易上手！
 
-```
-
-
-
-
-
-
-
