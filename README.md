@@ -5,6 +5,15 @@
 [https://aiothw4-thjthkhqo5rgsyvucb3jqp.streamlit.app/](https://aiothw4-thjthkhqo5rgsyvucb3jqp.streamlit.app/)
 
 ---
+---
+## 摘要（ABSTRACT）
+
+本專題以深度學習與生成式人工智慧（AIGC）為核心，建構一套動漫線稿影像生成系統。系統採用 Stable Diffusion 作為基礎生成模型，並結合針對動漫線稿與漫畫風格進行微調的 LoRA 模型，在不需大量運算資源的情況下，即可生成具有清晰線條與一致風格的高品質影像。相較於從零訓練模型，本方法具備參數效率高與部署彈性大的優勢。
+
+為提升使用者體驗與生成品質，本專題進一步設計一個簡易的 Agent 機制，協助使用者進行提示詞（Prompt）與生成參數的調整。該 Agent 可根據使用者輸入的描述內容，建議合適的正向與負向提示詞，以及 CFG scale 與取樣策略等參數設定，將提示詞工程視為一種輕量化的決策輔助流程，整合於 AIGC 生成管線中。
+
+此外，本專題透過 Streamlit 建置互動式 Web Demo，使用者無需進行複雜環境設定，即可於瀏覽器中操作動漫線稿生成系統。實驗結果顯示，該系統能穩定產生細節豐富且風格一致的動漫線稿影像，展現擴散模型、參數高效微調技術與 Agent 輔助生成在創作型人工智慧應用上的可行性與實用價值。
+---
 ## 本地成果
 <img width="1897" height="951" alt="image" src="https://github.com/user-attachments/assets/686ec071-a8b3-4d57-8c86-80c257f52503" />
 <img width="512" height="512" alt="00000-2084475014" src="https://github.com/user-attachments/assets/d63bbae9-b406-426c-bdfa-8fcf318a2210" />
@@ -123,6 +132,7 @@ torch.set_num_threads(2)
 感謝所有提供 **LoRA 權重** 與 **Diffusers 教學** 的開源社群，讓 AI 生成藝術更容易上手！
 
 ```
+
 
 
 
