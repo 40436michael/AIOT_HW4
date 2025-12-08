@@ -32,7 +32,7 @@ def load_pipeline():
     # 載入 LoRA
     pipe.load_lora_weights(
         "lora/animeLineartMangaLike_v30MangaLike.safetensors", 
-        weight=1.0
+        weight=0.8
     )
     
     # 確認 LoRA 參數
@@ -90,6 +90,7 @@ with col2:
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
 
 
 
