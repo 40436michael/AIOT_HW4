@@ -65,12 +65,13 @@ with col2:
 
         # callback 更新進度條
         def callback(step, timestep, latents):
-            progress = int((step+1)/steps*100)
+            progress = int((step + 1) / steps * 100)
+            progress = max(0, min(progress, 100))  # 限制 0~100
             progress_text.text(f"生成進度：{progress}% (Step {step+1}/{steps})")
             progress_bar.progress(progress)
 
         with st.spinner("生成中...（CPU 模式，請耐心等待）"):
-            image = pipe(
+            output = pipe(
                 prompt=prompt,
                 negative_prompt=negative_prompt,
                 num_inference_steps=steps,
@@ -78,10 +79,13 @@ with col2:
                 generator=generator,
                 callback=callback,
                 callback_steps=1
-            ).images[0]
+            )
+            image = output.images[0]
 
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
+
 
 
