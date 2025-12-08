@@ -3,22 +3,22 @@ import torch
 from diffusers import StableDiffusionPipeline
 
 # ======================
-# Streamlit UI 設定
+# 頁面設定
 # ======================
 st.set_page_config(
-    page_title="AIGC Image Generator",
+    page_title="Stable Diffusion WebUI (Streamlit)",
     page_icon="🎨",
-    layout="centered"
+    layout="wide"
 )
 
-st.title("🎨 AIGC 圖像生成 Demo")
-st.write("基於 Stable Diffusion 的文字生成圖像範例（CPU 版）")
+st.title("🎨 Stable Diffusion WebUI（Streamlit）")
+st.write("模擬 Stable Diffusion WebUI 的文字生成圖像介面（CPU 版）")
 
 # ======================
 # 載入模型（只載一次）
 # ======================
 @st.cache_resource
-def load_model():
+def load_pipeline():
     pipe = StableDiffusionPipeline.from_pretrained(
         "runwayml/stable-diffusion-v1-5",
         torch_dtype=torch.float32
@@ -26,33 +26,54 @@ def load_model():
     pipe = pipe.to("cpu")
     return pipe
 
-pipe = load_model()
+pipe = load_pipeline()
 
 # ======================
-# 使用者輸入
+# UI 區塊（左設定 / 右結果）
 # ======================
-prompt = st.text_input(
-    "輸入文字描述（Prompt）",
-    value="A cute cat, digital art"
-)
+col1, col2 = st.columns([1, 2])
 
-steps = st.slider(
-    "Inference Steps",
-    min_value=10,
-    max_value=50,
-    value=25
-)
+with col1:
+    st.subheader("生成參數設定")
 
-generate_btn = st.button("生成圖片")
+    prompt = st.text_area(
+        "Prompt",
+        "A cute cat, digital art, high quality"
+    )
 
-# ======================
-# 產生圖片
-# ======================
-if generate_btn:
-    with st.spinner("圖片生成中，CPU 模式請稍等..."):
-        image = pipe(
-            prompt,
-            num_inference_steps=steps
-        ).images[0]
+    negative_prompt = st.text_area(
+        "Negative Prompt",
+        "blurry, low resolution, bad anatomy"
+    )
 
-    st.image(image, caption="Generated Image", use_column_width=True)
+    steps = st.slider("Sampling Steps", 10, 50, 25)
+    cfg = st.slider("CFG Scale", 1.0, 15.0, 7.5)
+
+    seed = st.number_input(
+        "Seed（-1 為隨機）",
+        min_value=-1,
+        value=-1
+    )
+
+    generate_btn = st.button("生成圖片 🚀")
+
+with col2:
+    st.subheader("生成結果")
+
+    if generate_btn:
+        with st.spinner("圖片生成中（CPU 模式，請稍候）..."):
+
+            if seed == -1:
+                generator = None
+            else:
+                generator = torch.Generator("cpu").manual_seed(seed)
+
+            image = pipe(
+                prompt=prompt,
+                negative_prompt=negative_prompt,
+                num_inference_steps=steps,
+                guidance_scale=cfg,
+                generator=generator
+            ).images[0]
+
+        st.image(image, caption="Generated Image", use_container_width=True)
