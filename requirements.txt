@@ -1,6 +1,10 @@
 streamlit
-torch==2.1.2
-diffusers==0.31.0
+torch
+torchvision
+torchaudio
+diffusers
 transformers
 accelerate
 safetensors
+Pillow
+peft
