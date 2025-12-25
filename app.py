@@ -19,26 +19,22 @@ st.write("文字生成動漫線稿風格圖像介面（CPU 模式）")
 # ======================
 @st.cache_resource
 def load_pipeline():
-    # 限制 CPU 線程，避免 Cloud 卡死
     torch.set_num_threads(2)
-    
-    # 輕量動漫基模
+
     pipe = StableDiffusionPipeline.from_pretrained(
         "digiplay/majicMIX_realistic_v6",
-        torch_dtype=torch.float32
-    )
-    pipe = pipe.to("cpu")
-    
+        torch_dtype=torch.float32,
+        safety_checker=None
+    ).to("cpu")
+
     # 載入 LoRA
     pipe.load_lora_weights(
-        "lora/animeLineartMangaLike_v30MangaLike.safetensors", 
-        weight=0.8
+        "./lora",
+        weight_name="animeLineartMangaLike_v30MangaLike.safetensors"
     )
-    
-    # 確認 LoRA 參數
-    for name, param in pipe.unet.named_parameters():
-        if "lora" in name:
-            print(name, param.shape)
+
+    # 🔥 關鍵：融合 LoRA（一定要）
+    pipe.fuse_lora(lora_scale=0.8)
 
     return pipe
 
@@ -90,6 +86,7 @@ with col2:
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
 
 
 
