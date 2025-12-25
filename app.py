@@ -24,7 +24,7 @@ def load_pipeline():
     
     # 輕量動漫基模
     pipe = StableDiffusionPipeline.from_pretrained(
-        "hakurei/waifu-diffusion",
+        "digiplay/majicMIX_realistic_v6",
         torch_dtype=torch.float32
     )
     pipe = pipe.to("cpu")
@@ -90,6 +90,7 @@ with col2:
         progress_text.text("生成完成 ✅")
         progress_bar.progress(100)
         st.image(image, caption="Generated Image", use_container_width=True)
+
 
 
 
