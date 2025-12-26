@@ -1,4 +1,9 @@
 # AIGC 圖像生成 Web Demo（Stable Diffusion）
+已確定可執行
+
+
+https://github.com/user-attachments/assets/5031fdaa-12f8-4b73-b5e4-509b874eff1b
+
 
 本專案為「物聯網數據分析與應用 — Deep Learning AIGC（HW4）」之實作成果，參考 **Taica AIGC** 課程內容，延伸課堂中 Stable Diffusion 的示範，實作一個文字生成圖像（Text-to-Image）的生成式人工智慧應用，並以 **Streamlit** 建立 Web 操作介面。
 
@@ -131,5 +136,6 @@ torch.set_num_threads(2)
 ## 致謝
 
 感謝所有提供 **LoRA 權重** 與 **Diffusers 教學** 的開源社群，讓 AI 生成藝術更容易上手！
+
 
 
