@@ -1,5 +1,5 @@
 # AIGC 圖像生成 Web Demo（Stable Diffusion）
-已確定可執行
+## 已確定可執行
 
 
 https://github.com/user-attachments/assets/5031fdaa-12f8-4b73-b5e4-509b874eff1b
@@ -136,6 +136,7 @@ torch.set_num_threads(2)
 ## 致謝
 
 感謝所有提供 **LoRA 權重** 與 **Diffusers 教學** 的開源社群，讓 AI 生成藝術更容易上手！
+
 
 
 
